@@ -9,8 +9,8 @@ jobs:
     - name: checkout main
       uses: actions/checkout@v2
       with:
-        ref: 
-          - qa
+        ref: qa
+
 
     - name: commit to qa
       id: tag-commit-hash
