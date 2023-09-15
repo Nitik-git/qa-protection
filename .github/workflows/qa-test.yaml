@@ -1,0 +1,23 @@
+name: qa-test-protection
+on:
+  push:
+
+jobs:
+  check-qa-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout main
+      uses: actions/checkout@v2
+
+    - name: push to qa
+      id: tag-commit-hash
+      run: |
+        touch app.txt
+        git add .
+        git commit -m "Add application"
+
+    - name: Push Changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: qa        
