@@ -8,10 +8,15 @@ jobs:
     steps:
     - name: checkout main
       uses: actions/checkout@v2
+      with:
+        ref: 
+          - qa
 
-    - name: push to qa
+    - name: commit to qa
       id: tag-commit-hash
       run: |
+        git config --local user.email ""noreplay@github.com""
+        git config --local user.name "githubCI"        
         touch app.txt
         git add .
         git commit -m "Add application"
@@ -21,4 +26,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: qa        
-        
